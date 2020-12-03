@@ -1,0 +1,42 @@
+<!-- Laporsha Dees and Nived Parikh
+Nonwimp Assignment
+Chess.html
+20 November 2020 -->
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>Speech Chess</title>
+
+  </head>
+
+  <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
+    <script>
+      if (annyang) {
+  // Let's define a command.
+  const commands = {
+    'play chess': function() { alert('Hello world!'); }
+  };
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+  // Start listening.
+  annyang.start({autoRestart: true, continuous:false});
+	}else {
+		$(document).ready(function() {
+			$('unsupported').fadeIn('fast');
+		});
+	}
+    </script>
+    <div id="unsupported" class="hidden">
+    <h4>It looks like your browser doesn't support speech recognition.</h4>
+    <p>annyang plays nicely with all browsers, progressively enhancing modern browsers that support the SpeechRecognition standard, while leaving users with older browsers unaffected.</p>
+    <p>Please visit <a href="http://www.annyangjs.com/">http://www.annyangjs.com/</a> in a desktop browser like Chrome.</p>
+  </div>
+  </body>
+</html>
