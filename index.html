@@ -426,7 +426,7 @@ Chess.html
 			if (canMoveLeft(this.rPieces[index], this.rPieces, this.wPieces) == 1) {
         		this.rPieces[index].move(true);
         	}else if (canMoveLeft(this.rPieces[index], this.rPieces, this.wPieces) > 1) {
-        		this.wPieces.splice(2-canMoveLeft(this.rPieces[index], this.rPieces, this.wPieces), 1);
+        		this.wPieces.splice(canMoveLeft(this.rPieces[index], this.rPieces, this.wPieces)-2, 1);
         		this.rPieces[index].move(true);
         		this.rPieces[index].move(true);
         	}else {
@@ -445,7 +445,7 @@ Chess.html
         	if (canMoveRight(this.rPieces[index], this.rPieces, this.wPieces) == 1) {
         		this.rPieces[index].move(false);
         	}else if (canMoveRight(this.rPieces[index], this.rPieces, this.wPieces) > 1) {
-        		this.wPieces.splice(2-canMoveRight(this.rPieces[index], this.rPieces, this.wPieces), 1);
+        		this.wPieces.splice(canMoveRight(this.rPieces[index], this.rPieces, this.wPieces)-2, 1);
         		this.rPieces[index].move(false);
         		this.rPieces[index].move(false);
         	}else { 
