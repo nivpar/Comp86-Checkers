@@ -162,7 +162,9 @@ Chess.html
         				for (var j = 0; j < rPieces.length; j++) {
         					if (rPieces[i].getX()-60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
         						return -1;
-        					} if (rPieces[i].getX()-60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        					}
+        				}for (var j = 0; j < wPieces.length; j++){
+        					if (rPieces[i].getX()-60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
         						return -1;
         					}
         				}
@@ -182,7 +184,9 @@ Chess.html
         				for (var j = 0; j < wPieces.length; j++) {
         					if (wPieces[i].getX()-60 == wPieces[j].getX() && wPieces[i].getY()+60 == wPieces[j].getY()) {
         						return -1;
-        					}if (wPieces[i].getX()-60 == rPieces[j].getX() && wPieces[i].getY()+60 == rPieces[j].getY()) {
+        					}
+        				}for (var j = 0; j < rPieces.length; j++)  {
+        					if (wPieces[i].getX()-60 == rPieces[j].getX() && wPieces[i].getY()+60 == rPieces[j].getY()) {
         						return -1;
         					}
         				}
@@ -214,7 +218,9 @@ Chess.html
         				for (var j = 0; j < rPieces.length; j++) {
         					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
         						return -1;
-        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        					} 
+        				}for (var j = 0; j < wPieces.length; j++) {
+        					 if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
         						return -1;
         					}
         				}
@@ -234,7 +240,9 @@ Chess.html
         				for (var j = 0; j < wPieces.length; j++) {
         					if (wPieces[i].getX()+60 == wPieces[j].getX() && wPieces[i].getY()+60 == wPieces[j].getY()) {
         						return -1;
-        					} if (wPieces[i].getX()+60 == rPieces[j].getX() && wPieces[i].getY()+60 == rPieces[j].getY()) {
+        					} 
+        				}for (var j = 0; j < rPieces.length; j++) {
+        					 if (wPieces[i].getX()+60 == rPieces[j].getX() && wPieces[i].getY()+60 == rPieces[j].getY()) {
         						return -1;
         					}
         				}
