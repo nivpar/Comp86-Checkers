@@ -190,7 +190,7 @@ Chess.html
         			}
         		}else {
         			if (piece.getNumber() != wPieces[i].getNumber()){
-	        			if (wPieces[i].getX() == piece.getX()-60 && wPieces[i].getY() == piece.getY()+60) {
+	        			if (wPieces[i].getX() == piece.getX()-60 && wPieces[i].getY() == piece.getY()-60) {
 	        				return -1;
 	        			}
 	        		}
@@ -242,7 +242,7 @@ Chess.html
         			}
         		}else {
         			if (piece.getNumber() != wPieces[i].getNumber()){
-	        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()+60) {
+	        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()-60) {
 	        				return -1;
 	        			}
 	        		}
