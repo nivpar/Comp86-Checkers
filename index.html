@@ -22,6 +22,7 @@ Chess.html
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
     var myGame;
+    var turn = 1;
     
     window.onload = function () {
     	myGame = new Board;
@@ -137,6 +138,10 @@ Chess.html
         	}
         }
 
+        getColor() {
+        	return this.color;
+        }
+
         getNumber() {
         	return this.number;
         }
@@ -150,6 +155,110 @@ Chess.html
         }
 
     }
+    function canMoveLeft (piece, rPieces, wPieces) {
+        	for (var i = 0; i < rPieces.length; i++) {
+        		if (piece.getColor() == 1) {
+        			if (rPieces[i].getX() == piece.getX()-60 && rPieces[i].getY() == piece.getY()-60) {
+        				for (var j = 0; j < rPieces.length; j++) {
+        					if (rPieces[i].getX()-60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
+        						return -1;
+        					} if (rPieces[i].getX()-60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        						return -1;
+        					}
+        				}
+        				return 2+i;
+        			}
+        		}else {
+        			if (piece.getNumber() != rPieces[i].getNumber()){
+	        			if (rPieces[i].getX() == piece.getX()-60 && rPieces[i].getY() == piece.getY()+60) {
+	        				return -1;
+	        			}
+	        		}
+        		}
+        	}
+        	for (var i = 0; i < wPieces.length; i++) {
+        		if (piece.getColor() == -1) {
+        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()-60) {
+        				for (var j = 0; j < wPieces.length; j++) {
+        					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
+        						return -1;
+        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        						return -1;
+        					}
+        				}
+        				return 2+i;
+        			}
+        		}else {
+        			if (piece.getNumber() != wPieces[i].getNumber()){
+	        			if (wPieces[i].getX() == piece.getX()-60 && wPieces[i].getY() == piece.getY()-60) {
+	        				return -1;
+	        			}
+	        		}
+        		}
+        	}
+        	if (piece.getColor()==1) {
+        		if (piece.getX() == 30 || piece.getY() == 30) {
+        			return -1;
+        		}
+        	}else {
+        		if (piece.getX() == 30 || piece.getY() == 450) {
+        			return -1;
+        		}
+        	}
+        	return 1;
+        }
+    function canMoveRight (piece, rPieces, wPieces) {
+        	for (var i = 0; i < rPieces.length; i++) {
+        		if (piece.getColor() == 1) {
+        			if (rPieces[i].getX() == piece.getX()+60 && rPieces[i].getY() == piece.getY()-60) {
+        				for (var j = 0; j < rPieces.length; j++) {
+        					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
+        						return -1;
+        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        						return -1;
+        					}
+        				}
+        				return 2+i;
+        			}
+        		}else {
+        			if (piece.getNumber() != rPieces[i].getNumber()){
+	        			if (rPieces[i].getX() == piece.getX()+60 && rPieces[i].getY() == piece.getY()+60) {
+	        				return -1;
+	        			}
+	        		}
+        		}
+        	}
+        	for (var i = 0; i < wPieces.length; i++) {
+        		if (piece.getColor() == -1) {
+        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()-60) {
+        				for (var j = 0; j < wPieces.length; j++) {
+        					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
+        						return -1;
+        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        						return -1;
+        					}
+        				}
+        				return 2+i;
+        			}
+        		}else {
+        			if (piece.getNumber() != wPieces[i].getNumber()){
+	        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()-60) {
+	        				return -1;
+	        			}
+	        		}
+        		}
+        	}
+        	if (piece.getColor()==1) {
+        		if (piece.getX() == 450 || piece.getY() == 30) {
+        			return -1;
+        		}
+        	}else {
+        		if (piece.getX() == 450 || piece.getY() == 450) {
+        			return -1;
+        		}
+        	}
+        	return 1;
+        }
 
     class Board {
         constructor() {
@@ -220,44 +329,159 @@ Chess.html
 					this.tiles[i][j].draw(this.gc);
 				}
 			}
-			for (var i = 0; i < 12; i++) {
+			for (var i = 0; i < this.rPieces.length; i++) {
 				this.rPieces[i].draw_circle(this.gc)
 			}
-			for (var i = 0; i < 12; i++) {
+			for (var i = 0; i < this.wPieces.length; i++) {
 				this.wPieces[i].draw_circle(this.gc)
 			}
         }
 
+        removeRPiece(index) {
+        	this.rPieces.splice(index, 1);
+        }
+
+        removeWPiece(index) {
+        	this.wPieces.splice(index, 1);
+        }
+        //return -1 if it can't move
+        //return 1 if it can move one space
+        //return 2 if it can take a red piece, and make it move two spaces while removing the red piece.s
         moveWPieceLeft(number) {
-        	console.log(this.wPieces.length)
-        	this.wPieces[number-1].move(true);
+        	var index;
+        	for (var i = 0; i < this.wPieces.length; i++) {
+        		if (number == this.wPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+        	if (canMoveLeft(this.wPieces[index], this.rPieces, this.wPieces) == 1) {
+        		this.wPieces[index].move(true);
+        	}else if (canMoveLeft(this.wPieces[index], this.rPieces, this.wPieces) > 1) {
+        		this.rPieces.splice(canMoveLeft(this.wPieces[index], this.rPieces, this.wPieces)-2, 1);
+        		this.wPieces[index].move(true);
+        		this.wPieces[index].move(true);
+        	}else {
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
         }
 
         moveWPieceRight(number) {
-        	this.wPieces[number-1].move(false);
+        	var index;
+        	for (var i = 0; i < this.wPieces.length; i++) {
+        		if (number == this.wPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+        	if (canMoveRight(this.wPieces[index], this.rPieces, this.wPieces) == 1) {
+        		this.wPieces[index].move(false);
+        	}else if (canMoveRight(this.wPieces[index], this.rPieces, this.wPieces) > 1) {
+        		console.log('piece taken');
+        		console.log(canMoveRight(this.wPieces[index], this.rPieces, this.wPieces))
+        		this.rPieces.splice(canMoveRight(this.wPieces[index], this.rPieces, this.wPieces)-2, 1);
+        		this.wPieces[index].move(false);
+        		this.wPieces[index].move(false);
+        	}else {
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
         }
 
-        moveWPieceLeftBack(number) {
-        	this.wPieces[number-1].moveBack(true);
+        /*moveWPieceLeftBack(number) {
+        	var index;
+        	for (i = 0; i < this.wPieces.length; i++) {
+        		if (number == this.wPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+        	if (canMoveLeftBack(this.wPieces[index])) {
+        		this.wPieces[index].moveBack(true);
+        	}else {
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
         }
         moveWPieceRightBack(number) {
-        	this.wPieces[number-1].moveBack(false);
-        }
+        	var index;
+        	for (i = 0; i < this.wPieces.length; i++) {
+        		if (number == this.wPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+        	if (canMoveRightBack(this.wPieces[index])) {
+        		this.wPieces[index].moveBack(false);
+        	}else {
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
+        }*/
 
         moveRPieceLeft(number) {
-        	this.rPieces[number-1].move(true);
+        	var index;
+        	for (var i = 0; i < this.rPieces.length; i++) {
+        		if (number == this.rPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+			if (canMoveLeft(this.rPieces[index], this.rPieces, this.wPieces) == 1) {
+        		this.rPieces[index].move(true);
+        	}else if (canMoveLeft(this.rPieces[index], this.rPieces, this.wPieces) > 1) {
+        		this.wPieces.splice(2-canMoveLeft(this.rPieces[index], this.rPieces, this.wPieces), 1);
+        		this.rPieces[index].move(true);
+        		this.rPieces[index].move(true);
+        	}else {
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
         }
 
         moveRPieceRight(number) {
-        	this.rPieces[number-1].move(false);
+        	var index;
+        	for (var i = 0; i < this.rPieces.length; i++) {
+        		if (number == this.rPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+        	if (canMoveRight(this.rPieces[index], this.rPieces, this.wPieces) == 1) {
+        		this.rPieces[index].move(false);
+        	}else if (canMoveRight(this.rPieces[index], this.rPieces, this.wPieces) > 1) {
+        		this.wPieces.splice(2-canMoveRight(this.rPieces[index], this.rPieces, this.wPieces), 1);
+        		this.rPieces[index].move(false);
+        		this.rPieces[index].move(false);
+        	}else { 
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
         }
 
-        moveRPieceLeftBack(number) {
-        	this.rPieces[number-1].moveBack(true);
+        /*moveRPieceLeftBack(number) {
+        	var index;
+        	for (i = 0; i < this.rPieces.length; i++) {
+        		if (number == this.rPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+        	if (canMoveLeftBack(this.rPieces[index])) {
+        		this.rPieces[index].moveBack(true);
+        	}else {
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
         }
         moveRPieceRightBack(number) {
-        	this.rPieces[number-1].moveBack(false);
-        }
+        	var index;
+        	for (i = 0; i < this.rPieces.length; i++) {
+        		if (number == this.rPieces[i].getNumber()) {
+        			index = i;
+        		}
+        	}
+        	if (canMoveRightBack(this.rPieces[index])) {
+        		this.rPieces[index].moveBack(false);
+        	}else {
+        		alert("can't move");
+        		turn = turn*-1;
+        	}
+        }*/
 
         // init_pieces() {
         //
@@ -282,7 +506,7 @@ Chess.html
     			return 8;
     		}else if (number == "nine" || number == 9) {
     			return 9;
-    		}else if (number == "ten" || number == 10) {
+    		}else if (number == "ten" || number == "turn" || number == 10) {
     			return 10;
     		}else if (number == "eleven" || number == 11) {
     			return 11;
@@ -304,7 +528,7 @@ Chess.html
 		myGame.drawBoard();
 	}
 
-	function WMoveLeftBack(number) {
+	/*function WMoveLeftBack(number) {
 		myGame.moveWPieceLeftBack(number);
 		myGame.drawBoard();
 	}
@@ -312,7 +536,7 @@ Chess.html
 	function WMoveRightBack(number) {
 		myGame.moveWPieceRightBack(number);
 		myGame.drawBoard();
-	}
+	}*/
 
 	function RMoveLeft(number) {
 		myGame.moveRPieceLeft(number);
@@ -324,7 +548,7 @@ Chess.html
 		myGame.drawBoard();
 	}
 
-	function RMoveLeftBack(number) {
+	/*function RMoveLeftBack(number) {
 		myGame.moveRPieceLeftBack(number);
 		myGame.drawBoard();
 	}
@@ -332,7 +556,7 @@ Chess.html
 	function RMoveRightBack(number) {
 		myGame.moveRPieceRightBack(number);
 		myGame.drawBoard();
-	}
+	}*/
 	var turn = 1;
     if (annyang) {
 		// Let's define a command.
@@ -360,7 +584,7 @@ Chess.html
 			    	turn = turn * -1
 			    }
 		  	},
-		  	'*number left back' : function(number) {
+		  	/*'*number left back' : function(number) {
 		  		x = wordToNumber(number);
 		  		alert(number);
 			  	if (turn == 1) {
@@ -381,7 +605,7 @@ Chess.html
 			    	RMoveRightBack(x);
 			    	turn = turn * -1
 			    }
-		  	},
+		  	},*/
 		  	'*error' : function(error) {
 		  		alert(error + " is not a command");
 		  	}
