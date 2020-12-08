@@ -562,7 +562,7 @@ Chess.html
 		// Let's define a command.
 		const commands = {
 		    'start': function() { alert('Hello world!'); },
-		    '*number left' : function(number) {
+		    '*number to the left' : function(number) {
 			    x = wordToNumber(number);
 			    alert(number);
 			    if (turn == 1) {
@@ -573,7 +573,7 @@ Chess.html
 			    	turn = turn * -1
 			    }
 		  	},
-		  	'*number right' : function(number) {
+		  	'*number to the right' : function(number) {
 		  		x = wordToNumber(number);
 		  		alert(number);
 			  	if (turn == 1) {
