@@ -178,11 +178,11 @@ Chess.html
         	}
         	for (var i = 0; i < wPieces.length; i++) {
         		if (piece.getColor() == -1) {
-        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()-60) {
+        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()+60) {
         				for (var j = 0; j < wPieces.length; j++) {
-        					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
+        					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()+60 == rPieces[j].getY()) {
         						return -1;
-        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()+60 == wPieces[j].getY()) {
         						return -1;
         					}
         				}
@@ -190,7 +190,7 @@ Chess.html
         			}
         		}else {
         			if (piece.getNumber() != wPieces[i].getNumber()){
-	        			if (wPieces[i].getX() == piece.getX()-60 && wPieces[i].getY() == piece.getY()-60) {
+	        			if (wPieces[i].getX() == piece.getX()-60 && wPieces[i].getY() == piece.getY()+60) {
 	        				return -1;
 	        			}
 	        		}
@@ -230,11 +230,11 @@ Chess.html
         	}
         	for (var i = 0; i < wPieces.length; i++) {
         		if (piece.getColor() == -1) {
-        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()-60) {
+        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()+60) {
         				for (var j = 0; j < wPieces.length; j++) {
-        					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()-60 == rPieces[j].getY()) {
+        					if (rPieces[i].getX()+60 == rPieces[j].getX() && rPieces[i].getY()+60 == rPieces[j].getY()) {
         						return -1;
-        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()-60 == wPieces[j].getY()) {
+        					} if (rPieces[i].getX()+60 == wPieces[j].getX() && rPieces[i].getY()+60 == wPieces[j].getY()) {
         						return -1;
         					}
         				}
@@ -242,7 +242,7 @@ Chess.html
         			}
         		}else {
         			if (piece.getNumber() != wPieces[i].getNumber()){
-	        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()-60) {
+	        			if (wPieces[i].getX() == piece.getX()+60 && wPieces[i].getY() == piece.getY()+60) {
 	        				return -1;
 	        			}
 	        		}
