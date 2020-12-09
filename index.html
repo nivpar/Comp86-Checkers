@@ -20,7 +20,10 @@ Checkers.html
   	Rules and things to know: <br>
   	Make sure to allow your browser acces to mic <br>
   	Game starts when page is opened. White goes first. <br>
-  	No double takes, no queens, and when a piece is taken your turn repeats. <br>
+  	No double takes, no kings, and when a piece is taken your turn repeats. <br>
+  	Say "(number of piece) move to the left", "to the left", "move to the right", or "to the right" <br>
+  	to move a certain piece in a direction. <br>
+  	If illegal move is made, take the turn again. <br>
     <canvas id="Game" width="480" height="480" style="border:1px solid #d3d3d3;">Checkers</canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
@@ -156,7 +159,7 @@ Checkers.html
     			return 2;
     		}else if (number == "three" || number == 3) {
     			return 3;
-    		}else if (number == "four" || number == "for" || number == "fore"|| number == 4) {
+    		}else if (number == "four" || number == "for" || number == "fore"|| number == 4 || number == "or") {
     			return 4;
     		}else if (number == "five" || number == 5) {
     			return 5;
@@ -164,7 +167,7 @@ Checkers.html
     			return 6;
     		}else if (number == "seven" || number == 7) {
     			return 7;
-    		}else if (number == "eight" || number == "ate" || number == 8) {
+    		}else if (number == "eight" || number == "ate" || number == 8 ||  number == "state") {
     			return 8;
     		}else if (number == "nine" || number == 9) {
     			return 9;
@@ -223,8 +226,7 @@ Checkers.html
     if (annyang) {
 		// Let's define a command.
 		const commands = {
-		    'start': function() { alert('Hello world!'); },
-		    '*number to the left' : function(number) {
+		    '*number move to the left' : function(number) {
 			    x = wordToNumber(number);
 			    alert(number);
 			    if (turn == 1) {
@@ -232,6 +234,29 @@ Checkers.html
 			    	turn = turn * -1
 			    }else {
 			    	RMoveLeft(x);
+			    	turn = turn * -1
+			    }
+		  	},
+		  	'*number to the left' : function(number) {
+			    x = wordToNumber(number);
+			    alert(number);
+			    if (turn == 1) {
+			    	WMoveLeft(x);
+			    	turn = turn * -1
+			    }else {
+			    	RMoveLeft(x);
+			    	turn = turn * -1
+			    }
+		  	},
+
+		  	'*number move to the right' : function(number) {
+		  		x = wordToNumber(number);
+		  		alert(number);
+			  	if (turn == 1) {
+			    	WMoveRight(x);
+			    	turn = turn * -1
+			    }else {
+			    	RMoveRight(x);
 			    	turn = turn * -1
 			    }
 		  	},
@@ -246,7 +271,8 @@ Checkers.html
 			    	turn = turn * -1
 			    }
 		  	},
-        '*number to the write' : function(number) {
+
+        '*number move to the write' : function(number) {
 		  		x = wordToNumber(number);
 		  		alert(number);
 			  	if (turn == 1) {
@@ -257,7 +283,7 @@ Checkers.html
 			    	turn = turn * -1
 			    }
 		  	},
-        '*number to the rate' : function(number) {
+        '*number move to the rate' : function(number) {
           x = wordToNumber(number);
           alert(number);
           if (turn == 1) {
@@ -268,28 +294,6 @@ Checkers.html
             turn = turn * -1
           }
         },
-		  	/*'*number left back' : function(number) {
-		  		x = wordToNumber(number);
-		  		alert(number);
-			  	if (turn == 1) {
-			    	WMoveLeftBack(x);
-			    	turn = turn * -1
-			    }else {
-			    	RMoveLeftBack(x);
-			    	turn = turn * -1
-			    }
-		  	},
-		  	'*number right back' : function(number) {
-		  		x = wordToNumber(number);
-		  		alert(number);
-			  	if (turn == 1) {
-			    	WMoveRightBack(x);
-			    	turn = turn * -1
-			    }else {
-			    	RMoveRightBack(x);
-			    	turn = turn * -1
-			    }
-		  	},*/
 		  	'*error' : function(error) {
 		  		alert(error + " is not a command");
 		  	}
